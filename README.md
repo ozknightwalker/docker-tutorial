@@ -52,3 +52,42 @@ docker tag friendlyhello jcdin/get-started:step-1
 ```
 
 
+## SERVICES
+
+- create your `docker-compose.yml` to contain the script on what would your container behave on production
+
+## RUN LOAD BALANCING
+before we can run the `docker stack deploy` we need to intialize our swarm
+
+```
+docker swarm init
+```
+
+then lets deploy/re-deploy our service by
+```
+# docker stack deploy -c docker-compose.yml {app name/label}
+docker stack deploy -c docker-compose.yml getstartedlab
+```
+
+
+to list all running services do
+```
+docker services ls
+```
+
+to list all containers within a service do
+```
+# docker service ps {service id / service label}
+docker service ps getstartedlab_web
+```
+
+to stop a service
+```
+# docker stack rm {service id/ service label}
+docker stack rm getstartedlab
+```
+
+leave the swarm
+```
+docker swarm leave --force
+```
